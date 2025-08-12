@@ -1,0 +1,13 @@
+@import "tailwindcss" theme(static);
+@source "../views/";
+@source "../../app/";
+
+.btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.65rem 1rem; border-radius:.5rem; font-weight:600;
+  text-decoration:none; border:1px solid transparent; transition:all .2s ease;
+}
+.btn--primary { background:#111; color:#fff; }
+.btn--primary:hover { transform:translateY(-1px); }
+.btn--ghost { background:transparent; border-color:#111; color:#111; }
+.btn--ghost:hover { background:#111; color:#fff; }
