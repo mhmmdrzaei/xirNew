@@ -89,18 +89,18 @@ add_action('after_setup_theme', function () {
 
     add_action('init', function () {
   register_post_type('artist', [
-    'label' => 'Residents',
-    'labels' => ['singular_name' => 'Resident'],
+    'label' => 'Artists',
+    'labels' => ['singular_name' => 'artist'],
     'public' => true,
     'has_archive' => true,
     'show_in_rest' => true,
     'supports' => ['title','editor','thumbnail','excerpt'],
     'menu_icon' => 'dashicons-admin-users',
-    'rewrite' => ['slug' => 'residents'],
+    'rewrite' => ['slug' => 'artist'],
   ]);
 
-  register_taxonomy('resident_status', ['resident'], [
-    'label' => 'Resident Status',
+  register_taxonomy('resident_status', ['artist'], [
+    'label' => 'Artist Status',
     'public' => true,
     'hierarchical' => false,
     'show_in_rest' => true,

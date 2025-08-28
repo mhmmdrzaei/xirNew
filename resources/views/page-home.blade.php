@@ -1,24 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
+@php 
+  $about = get_page_by_path('about'); 
+@endphp
+
+@if ($about)
+  @php
+    // Get content with proper formatting
+    $content = apply_filters('the_content', $about->post_content);
+    // Split into paragraphs
+    preg_match('/<p>(.*?)<\/p>/', $content, $matches);
+    $first_paragraph = $matches[0] ?? '';
+  @endphp
+
   <section class="home-intro wrap">
-    @php $about = get_page_by_path('about'); @endphp
+    <div class="intro">
+      {!! $first_paragraph !!}
+    </div>
 
-    @if ($about)
-      <div class="intro">
-        {!! apply_filters('the_content', $about->post_content) !!}
-      </div>
-
-      <x-button href="{{ get_permalink($about) }}">Read more</x-button>
-    @else
-      <p>Create a page with slug “about” to show intro here.</p>
-    @endif
+    <x-button href="{{ get_permalink($about) }}">Read more</x-button>
+  </section>
+@else
+  <p>Create a page with slug “about” to show intro here.</p>
+@endif
   </section>
 
   <section class="home-current-resident wrap">
     @php
       $current = new WP_Query([
-        'post_type' => 'resident',
+        'post_type' => 'artist',
         'posts_per_page' => 1,
         'tax_query' => [[
           'taxonomy' => 'resident_status',
