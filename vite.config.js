@@ -1,17 +1,16 @@
 import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite';
+
 import laravel from 'laravel-vite-plugin'
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
 export default defineConfig({
-  base: '/app/themes/sage/public/build/',
+  // base: '/app/themes/sage/public/build/',
   plugins: [
-    tailwindcss(),
     laravel({
       input: [
-        'resources/css/app.css',
+        'resources/css/app.scss',
         'resources/js/app.js',
-        'resources/css/editor.css',
+        'resources/css/editor.scss',
         'resources/js/editor.js',
       ],
       refresh: true,
@@ -27,21 +26,21 @@ export default defineConfig({
       disableTailwindFontSizes: false,
     }),
   ],
-    server: {
-    host: 'localhost',
-    port: 5173,
-    strictPort: true,
-    https: false,
-    hmr: { host: 'localhost' },
-    proxy: {
-      // Proxy EVERYTHING to your MAMP site
-      '/': {
-        target: 'http://localhost:8888', // ← put YOUR WP URL here
-        changeOrigin: true,
-        secure: false,
-      },
+server: {
+  host: 'localhost',
+  port: 5173,
+  strictPort: true,
+  https: false,
+  hmr: { host: 'localhost' },
+  proxy: {
+    // only proxy PHP requests, not Vite assets
+    '^/(?!@vite|resources|@react-refresh)': {
+      target: 'http://localhost:8888', // your WP site
+      changeOrigin: true,
+      secure: false,
     },
   },
+},
   resolve: {
     alias: {
       '@scripts': '/resources/js',

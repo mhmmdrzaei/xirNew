@@ -1,0 +1,137 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+
+
+
+#app {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+h1, h1 a {
+   color: black;
+   font-weight: 700;
+   text-decoration: none;
+   text-transform: uppercase;
+}
+
+$font-sans: 'Kumbh Sans', sans-serif;
+
+body {
+  font-family: $font-sans;
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .x-cross {
+      position: relative;
+
+      .x-checkbox {
+        display: none;
+      }
+
+      .x-box {
+        width: 40px;
+        height: 40px;
+        border: 1px solid black;
+        border-radius: 11px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .x-checkbox:checked + .x-box {
+        content: '';
+      }
+    }
+
+    .site-title a {
+      font-size: 50px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  .main-nav {
+    display: none;
+
+    .menu-list {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .hamburger {
+    display: block;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 32px;
+      height: 4px;
+      background: black;
+    }
+  }
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+.show {
+    display: block;
+  }
+
+/* Media queries */
+@media (min-width: 760px) {
+  .header .main-nav {
+    display: flex;
+  }
+
+  .header .hamburger,
+  .mobile-menu {
+    display: none;
+  }
+
+}
